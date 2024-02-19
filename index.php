@@ -19,7 +19,10 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			00 月 00 號 Tuesday | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
+			<?= date("m 月 d號 l"); ?>
+			| 今日瀏覽: 0 | 累積瀏覽: 0
+			<a href="index.php" style="float:right">回首頁</a>
+		</div>
 		<div id="title2">
 
 		</div>
@@ -40,11 +43,11 @@
 					<!-- 會員登入下方載入不同頁面 -->
 					<div class="">
 						<?php
-						$do=$_GET['do']??'main';
-						$file="./front/{$do}.php";
-						if(file_exists($file)){
+						$do = $_GET['do'] ?? 'main';
+						$file = "./front/{$do}.php";
+						if (file_exists($file)) {
 							include $file;
-						}else{
+						} else {
 							include "./front/main.php";
 						}
 						?>
