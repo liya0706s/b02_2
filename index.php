@@ -20,8 +20,8 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?= date("m月d日 l"); ?> 
-			今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total']; ?> 
+			<?= date("m月d日 l"); ?>
+			今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total']; ?>
 			累積瀏覽: <?= $Total->sum('total'); ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
@@ -37,9 +37,10 @@
 				<a class="blo" href="?do=que">問卷調查</a>
 			</div>
 			<div class="hal" id="main">
-				<div>
-
-					<span style="width:18%; display:inline-block;">
+				<!-- 在會員登入這邊d-flex 跑馬燈 -->
+				<div style="display:flex">
+					<marquee style="width:80%">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
+					<span style="width:20%; display:inline-block;">
 						<a href="?do=login">會員登入</a>
 					</span>
 					<!-- 會員登入下方載入不同頁面 -->
@@ -57,10 +58,11 @@
 				</div>
 			</div>
 		</div>
+		<!-- 頁尾版權更改年份和QR Code的圖檔 -->
 		<div id="bottom">
-			本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2012健康促進網社群平台 All Right Reserved
+			本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2024健康促進網社群平台 All Right Reserved
 			<br>
-			服務信箱：health@test.labor.gov.tw<img src="./home_files/02B02.jpg" width="45">
+			服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
 		</div>
 	</div>
 
