@@ -152,7 +152,7 @@ $Log = new DB('log');
 // 如果還沒設定 $_SESSION['visited'], 則執行以下程式碼
 if (!isset($_SESSION['visited'])) {
     // 如果今天的日期在資料庫中已存在，則取得該筆資料
-    if ($Total->count(['date' => date('Y-m-d')] > 0)) {
+    if ($Total->count(['date' => date('Y-m-d')]) > 0) {
         $total = $Total->find(['date' => date('Y-m-d')]);
         // 該筆資料的total欄位加一
         $total['total']++;
