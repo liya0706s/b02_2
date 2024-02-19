@@ -112,6 +112,30 @@ class DB
             if(!empty($array)){
                 $tmp=$this->a2s($array);
             }
+            $sql.=join(",",$tmp);
+            $sql.=" where `id`={$array['id']}";
+        }else{
+            $sql="(`".join("`,`", array_keys($array)) . "`)";
+            $val ="('".join("','", $array). "')";
         }
+        return $this->pdo->exec($sql);
     }
+
+    public function q($sql){
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
+// class DB 結束
+
+function to($url){
+    header("location:" .$url);
+}
+
+function dd($array){
+    echo "<pre>";
+print_r($array);
+    echo "<pre>";
+}
+
+?>
