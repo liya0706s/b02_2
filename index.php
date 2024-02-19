@@ -1,4 +1,5 @@
-﻿<?php include_once "db.php"; ?>
+﻿<?php include_once "./api/db.php"; ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,12 +20,13 @@
 	<iframe name="back" style="display:none;"></iframe>
 	<div id="all">
 		<div id="title">
-			<?= date("m 月 d號 l"); ?>
-			| 今日瀏覽: 0 | 累積瀏覽: 0
+			<?= date("m月d日 l"); ?> 
+			今日瀏覽: <?= $Total->find(['date' => date("Y-m-d")])['total']; ?> 
+			累積瀏覽: <?= $Total->sum('total'); ?>
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2">
-
+			<a href="./icon/02B01.jpg" title="健康促進網-回首頁"></a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
