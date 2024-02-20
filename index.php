@@ -43,18 +43,18 @@
 					<span style="width:20%; display:inline-block;">
 						<a href="?do=login">會員登入</a>
 					</span>
-					<!-- 會員登入下方載入不同頁面 -->
-					<div class="">
-						<?php
-						$do = $_GET['do'] ?? 'main';
-						$file = "./front/{$do}.php";
-						if (file_exists($file)) {
-							include $file;
-						} else {
-							include "./front/main.php";
-						}
-						?>
-					</div>
+				</div>
+				<!-- 會員登入下方載入不同頁面 -->
+				<div class="">
+					<?php
+					$do = $_GET['do'] ?? 'main';
+					$file = "./front/{$do}.php";
+					if (file_exists($file)) {
+						include $file;
+					} else {
+						include "./front/main.php";
+					}
+					?>
 				</div>
 			</div>
 		</div>
