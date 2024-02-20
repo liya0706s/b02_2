@@ -41,7 +41,26 @@
 				<div style="display:flex">
 					<marquee style="width:80%">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
 					<span style="width:20%; display:inline-block;">
-						<a href="?do=login">會員登入</a>
+						<?php
+						// 如果沒有session紀錄user，顯示會員登入
+						if (!isset($_SESSION['user'])) {
+						?>
+							<a href="?do=login">會員登入</a>
+						<?php
+						} else {
+							// 有session紀錄登入的帳號							
+						?>
+							歡迎,<?= $_SESSION['user']; ?>
+							<button onclick="location.href='./api/logout.php'">登出</button>
+							<?php
+							// 有session登入紀錄且帳號是admin
+							if ($_SESSION['user'] == 'admin') {
+							?>
+							<button onclick="location.href='back.php'">管理</button>
+						<?php
+							}
+						}
+						?>
 					</span>
 				</div>
 				<!-- 會員登入下方載入不同頁面 -->
