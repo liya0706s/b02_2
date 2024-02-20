@@ -27,15 +27,38 @@
         </tr>
     </table>
 </fieldset>
+<!-- <a href="../api/chk_acc.php"></a> -->
 <script>
-    reg(){
-        let user={
-            acc:$("#acc").val(),
-            pw:$("#pw").val(),
-            pw2:$("#pw2").val(),
-            email:$("#email").val()
+    function reg() {
+        // 取得使用者輸入的帳號 密碼 確認密碼 和電子信箱
+        let user = {
+            acc: $("#acc").val(),
+            pw: $("#pw").val(),
+            pw2: $("#pw2").val(),
+            email: $("#email").val()
         }
-
-        if(user.acc!='')
+        // 1. 檢查輸入的內容是否完整
+        if (user.acc != '' && user.pw != '' && user.pw2 != '' && user.email != ''){
+            // 2. 檢查密碼和確認密碼是否相符
+            if(user.pw==user.pw2){
+                // 發送 POST 檢查申請的帳號是否重覆
+                $.post("./api/chk_acc.php", {acc:user.acc},(res)=>{
+                    // 如果回傳的結果是整數1, 表示帳號重覆
+                    if(parseInt(res)==1){
+                        alert("帳號重覆")
+                    }else{
+                        // 否則帳號沒有重覆，發送POST請求進行註冊
+                        $.post("./api/reg.php", user,(res)=>{
+                            alert("註冊完成,歡迎加入")
+                        })
+                    }
+                })
+            }else{
+                // 密碼和確認密碼沒有一致
+                alert("密碼錯誤")
+            }
+        }else{
+            alert("不可空白")
+        }
     }
 </script>
