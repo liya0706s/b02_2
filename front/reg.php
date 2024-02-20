@@ -27,3 +27,15 @@
         </tr>
     </table>
 </fieldset>
+<script>
+    reg(){
+        let user={
+            acc:$("#acc").val(),
+            pw:$("#pw").val(),
+            pw2:$("#pw2").val(),
+            email:$("#email").val()
+        }
+
+        if(user.acc!='')
+    }
+</script>

@@ -56,9 +56,4 @@
             }
         })
     }
-
-    function clean(){
-        // 清除帳號和密碼欄位的值
-        $("input[type='text'],input[type='password']").val("");
-    }
 </script>
