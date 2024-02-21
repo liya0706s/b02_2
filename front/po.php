@@ -20,20 +20,41 @@
 </fieldset>
 
 <script>
+
+    // 分類網誌中的a連結點選會牽動，文章列表(type)的不同
     // 註冊class type-item的點擊事件
-    $(".type-item").on('click',function(){
+    $(".type-item").on('click', function() {
         // 取出點擊的文字，並放入導航列中
         $(".type").text($(this).text())
         // 點擊同時取得分類項目的代號
-        let type=$(this).data('type')
-        getList(type)
+        let type = $(this).data('type')
 
-        // 先載入type=1的文章列表
-        getList(1);
+        // 執行取得分類文章列表函式
+        getList(type)
 
     })
 
-    function getList(type){
-        $.get("./api/get_list.php".{type},(list ))
+    // init 
+    getList(1)
+    // 取得分類列表函式
+    function getList(type) {
+        $.get("./api/get_list.php", {
+            type
+        }, (list) => {
+            // 返回的數據儲存在名為list的變數中
+            $(".list-items").html(list)
+            // 將class list-items的元素(放置文章標題列表)內的html內容，更新為list變數中的html內容
+            $(".article").hide();
+            $(".list-items").show();
+        })
+    }
+
+    // 取得指定文章內容函式
+    function getNews(id){
+        $.get("./api/get_news.php",{id},(news)=>{
+            $(".article").html(news)
+            $(".article").show();
+            $(".list-items").hide();
+        })
     }
 </script>
