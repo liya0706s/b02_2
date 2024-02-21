@@ -20,7 +20,9 @@
 </fieldset>
 
 <script>
-
+    // init 
+    getList(1)
+    
     // 分類網誌中的a連結點選會牽動，文章列表(type)的不同
     // 註冊class type-item的點擊事件
     $(".type-item").on('click', function() {
@@ -34,8 +36,6 @@
 
     })
 
-    // init 
-    getList(1)
     // 取得分類列表函式
     function getList(type) {
         $.get("./api/get_list.php", {
@@ -49,9 +49,11 @@
         })
     }
 
-    // 取得指定文章內容函式
-    function getNews(id){
-        $.get("./api/get_news.php",{id},(news)=>{
+    // 建立取得單一文章內容函式
+    function getNews(id) {
+        $.get("./api/get_news.php", {
+            id
+        }, (news) => {
             $(".article").html(news)
             $(".article").show();
             $(".list-items").hide();
