@@ -24,19 +24,21 @@
     </table>
 </fieldset>
 <!-- <a href="../api/chk_acc.php"></a> -->
+<!-- 不準阿，這是include在index.php的檔案，不能這樣看TT -->
+
 <script>
     function login(){
         // 取得帳號密碼輸入框的值
         let acc=$("#acc").val()
         let pw=$("#pw").val()
         // 發送 POST 請求到chk_acc.php 檢查帳號是否存在
-        $.post('../api/chk_acc.php', {acc}, (res)=>{
+        $.post('./api/chk_acc.php', {acc}, (res)=>{
             // parseInt()將字串轉為整數。如果回傳的結果為0，表示登入帳號錯誤
             if(parseInt(res)==0){
                 alert("查無帳號")
             }else{
                 // 發送POST請求到chk_pw.php 檢查帳號密碼是否正確
-                $.post('../api/chk_pw.php',{acc,pw},(res)=>{
+                $.post('./api/chk_pw.php',{acc,pw},(res)=>{
                     // 用console.log(res)來查看js程式的訊息
                     // console.log(res);
                     // 如果回傳的結果為1, 表示帳號 密碼正確
