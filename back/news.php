@@ -1,4 +1,4 @@
-<!-- 建立後台文章列表 及 分頁連結 -->
+<!-- 建立 最新文章後臺管理 及 分頁連結 -->
 <form action="./api/edit_news.php" method="post">
     <table style="width:100%;text-align:center">
         <tr>
