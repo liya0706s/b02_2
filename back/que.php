@@ -19,3 +19,13 @@
         </div>
     </form>
 </fieldset>
+
+<script>
+    function more(){
+        let opt=`
+        <div>選項
+            <input type="text" name="option[]">
+        </div>`
+        $("#opt").after(opt);
+    }
+</script>
