@@ -43,10 +43,10 @@
                     if(parseInt(res)==1){
                         // 且帳號是'admin', 導向後台頁面
                         if($("#acc").val()=='admin'){
-                            // location.href='back.php'
+                            location.href='back.php'
                         }else{
                             // 帳密正確但是帳號不是admin, 導向前台
-                            // location.href='index.php'
+                            location.href='index.php'
                         }
                     }else{
                         // 帳號正確但是密碼錯誤
