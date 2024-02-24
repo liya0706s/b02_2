@@ -11,10 +11,26 @@
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
+	<style>
+		.pop {
+			background: rgba(51, 51, 51, 0.8);
+			color: #FFF;
+			/* min-height: 100px; */
+			height: 300px;
+			width: 300px;
+			/* position: fixed; */
+			position: absolute;
+			display: none;
+			z-index: 9999;
+			overflow: auto;
+		}
+	</style>
+
 </head>
 
 <body>
-	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
+	<!-- alerr 彈出視窗 -->
+	<div id="alerr" class="pop">
 		<pre id="ssaa"></pre>
 	</div>
 	<iframe name="back" style="display:none;"></iframe>
@@ -56,7 +72,7 @@
 							// 有session登入紀錄且帳號是admin
 							if ($_SESSION['user'] == 'admin') {
 							?>
-							<button onclick="location.href='back.php'">管理</button>
+								<button onclick="location.href='back.php'">管理</button>
 						<?php
 							}
 						}

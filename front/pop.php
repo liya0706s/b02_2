@@ -1,10 +1,10 @@
 <fieldset>
-  <legend>目前位置 : 首頁 > 最新文章</legend>
+  <legend>目前位置 : 首頁 > 人氣文章</legend>
   <table>
     <tr>
       <th>標題</th>
       <th>內容</th>
-      <th></th>
+      <th>人氣</th>
     </tr>
     <!-- 分頁又來囉 -->
     <?php
@@ -17,8 +17,8 @@
     // 每一頁的第一個, 例如現在在第二頁, (2-1)*5=5
     $start = ($now - 1) * $div;
 
-    // 最新文章取得所有，其中有顯示的限制從每頁的開始算起取5筆
-    $rows = $News->all(['sh' => 1], " limit $start, $div");
+    // 人氣文章取得所有，其中有顯示的，更改排序的方式，限制從每頁的開始算起取5筆
+    $rows = $News->all(['sh' => 1], " order by `good` desc limit $start, $div");
     foreach ($rows as $row) {
     ?>
       <tr>
@@ -28,21 +28,26 @@
           </div>
         </td>
         <td>
-          <div id="s<?= $row['id']; ?>">
+          <div>
             <!-- 部分文章內容，中文字從第零個字取25個字 -->
             <?= mb_substr($row['news'], 0, 25); ?>...
           </div>
-          <div id="a<?= $row['id']; ?>" style="display:none">
-            <?= $row['news']; ?>
+          <!-- hover過去會有的完整內容 -->
+          <!-- class pop是彈出視窗的CSS, id=p+文章id是控制顯示隱藏 -->
+          <div id="p<?= $row['id']; ?>" class="pop">
+            <h4 style="color:skyblue;"><?= $row['title']; ?></h4>
+            <pre><?= $row['news']; ?></pre>
           </div>
         </td>
         <!-- 第三欄根據登入狀態，顯示可以按讚的程式 -->
         <td>
+          <span><?= $row['good']; ?></span>個人說
+          <img src="./icon/02B03.jpg" style="width:25px;">
           <?php
           if (isset($_SESSION['user'])) {
             if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0) {
               echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
-            }else{
+            } else {
               echo "<a href='Javascript:good({$row['id']})'>讚</a>";
             }
           }
@@ -74,18 +79,22 @@
   </div>
 </fieldset>
 
-<!-- 點擊文章標題，控制顯示部分和全部文章內容的js -->
 <script>
-  // 1. 對class title進行點擊事件註冊
-  $(".title").on('click', (e) => {
-    // 2. 點擊對象用.data('id')方法來獲得data-id屬性的值, 取得點擊的id
-    let id = $(e.target).data('id');
+  $(".title").hover(
+    function() {
+      $(".pop").hide()
+      let id = $(this).data("id")
+      $("#p" + id).show()
+    }
+  )
 
-    // 3. 對id為s+id, a+id的元素進行toggle()來切換顯示與隱藏
-    $(`#s${id},#a${id}`).toggle();
-  })
+  // 1. 點擊事件改為hover
+  // 2. 函式設定class pop 藏起來
+  // 3. 用.data("id") 取得點擊的id
+  // 4. 將對應的id前面加上#p 讓它顯示出來
 
-  // 這裡的變數news是 文章id--$row['id']
+
+  // good函數會控制讚數的按讚和收回，這裡的變數news是文章id--$row['id']
   function good(news) {
     $.post("./api/good.php", {
       news
