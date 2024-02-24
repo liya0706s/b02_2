@@ -36,7 +36,18 @@
                         <?= $row['news']; ?>
                     </div>
                 </td>
-                <td></td>
+                <!-- 第三欄根據登入狀態，顯示可以按讚的程式 -->
+                <td>
+                    <?php
+                    if(isset($_SESSION['user'])){
+                        if($Log->count(['news'=>$row['id'], 'acc'=>$_SESSION['user']])>0){
+                            echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
+                        }else{
+                            echo "<a href='Javascript:good({$row['id']})'>讚</a>";
+                        }
+                    }
+                    ?>
+                </td>
             </tr>
         <?php
         }
@@ -62,3 +73,15 @@
         ?>
     </div>
 </fieldset>
+
+<!-- 點擊文章標題，控制顯示部分和全部文章內容的js -->
+<script>
+    // 1. 對class title進行點擊事件註冊
+    $(".title").on('click', (e) => {
+        // 2. 點擊對象用.data('id')方法來獲得data-id屬性的值, 取得點擊的id
+        let id = $(e.target).data('id');
+
+        // 3. 對id為s+id, a+id的元素進行toggle()來切換顯示與隱藏
+        $(`#s${id},#a${id}`).toggle();
+    })
+</script>
