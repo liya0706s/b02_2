@@ -100,9 +100,7 @@
 
   // good函數會控制讚數的按讚和收回，這裡的變數news是文章id--$row['id']
   function good(news) {
-    $.post("./api/good.php", {
-      news
-    }, () => {
+    $.post("./api/good.php", {news}, () => {
       location.reload();
     })
   }
