@@ -6,6 +6,7 @@
       <th>內容</th>
       <th>人氣</th>
     </tr>
+
     <!-- 分頁又來囉 -->
     <?php
     // 算總共有幾筆要顯示的最新文章
@@ -21,24 +22,27 @@
     $rows = $News->all(['sh' => 1], " order by `good` desc limit $start, $div");
     foreach ($rows as $row) {
     ?>
+
       <tr>
         <td>
           <div class="title" data-id="<?= $row['id']; ?>" style="cursor:pointer">
             <?= $row['title']; ?>
           </div>
         </td>
+
         <td>
           <div>
             <!-- 部分文章內容，中文字從第零個字取25個字 -->
             <?= mb_substr($row['news'], 0, 25); ?>...
           </div>
-          <!-- hover過去會有的完整內容 -->
+          <!-- hover過去會有的完整文章內容 -->
           <!-- class pop是彈出視窗的CSS, id=p+文章id是控制顯示隱藏 -->
           <div id="p<?= $row['id']; ?>" class="pop">
             <h4 style="color:skyblue;"><?= $row['title']; ?></h4>
             <pre><?= $row['news']; ?></pre>
           </div>
         </td>
+        
         <!-- 第三欄根據登入狀態，顯示可以按讚的程式 -->
         <td>
           <span><?= $row['good']; ?></span>個人說
@@ -64,16 +68,16 @@
     // 目前頁數減掉一頁大於零代表可以上一頁
     if (($now - 1) > 0) {
       $prev = $now - 1;
-      echo "<a href='?do=news&p=$prev'> < </a>";
+      echo "<a href='?do=pop&p=$prev'> < </a>";
     }
     // 設定變數i從一開始跑，每次跑一圈，不能超過總頁數 
     for ($i = 1; $i <= $pages; $i++) {
       $fontsize = ($i == $now) ? 'font-size:20px' : 'font-size:18px';
-      echo "<a href='?do=news&p=$i' style='$fontsize'> $i </a>";
+      echo "<a href='?do=pop&p=$i' style='$fontsize'> $i </a>";
     }
     if (($now + 1) >= $pages) {
       $next = $now + 1;
-      echo "<a href='?do=news&p=$next'> > </a>";
+      echo "<a href='?do=pop&p=$next'> > </a>";
     }
     ?>
   </div>
