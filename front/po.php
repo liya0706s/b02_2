@@ -1,3 +1,18 @@
+<style>
+    .type-item{
+        display: block;
+    }
+
+    .types, .news-list{
+        display:inline-block;
+        vertical-align: top;
+    }
+
+    .news-list{
+        width:600px;
+    }
+</style>
+
 <!-- 建立一麵包屑區塊，用來顯示當前的文章類別 -->
 <div class="nav">
     目前位置 : 首頁 > 分類網誌 > <span class="type">健康新知</span>
