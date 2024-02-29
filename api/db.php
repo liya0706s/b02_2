@@ -98,14 +98,15 @@ class DB
 
     function del($id)
     {
-        $sql = "delete from `$this->table` where ";
+        $sql = "delete from `$this->table` ";
 
         if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql .= join(" && ", $tmp);
+            $sql .=" where ". join(" && ", $tmp);
         } else if (is_numeric($id)) {
-            $sql .= " `id`='$id'";
+            $sql .= " where `id`='$id'";
         }
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
 
