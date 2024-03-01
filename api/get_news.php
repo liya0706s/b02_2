@@ -8,5 +8,5 @@ echo "<span style='font-weight:bolder'>" . $news['title']. "</span>";
 echo "<br>";
 
 echo nl2br($news['news']);
-
+   
 ?>
