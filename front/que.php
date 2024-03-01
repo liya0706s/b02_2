@@ -19,7 +19,7 @@
         <td> <?= $que['vote']; ?> </td>
         <td>
           <!-- 連結要加上主題資料的id -->
-          <a href="?=do=result&id=<?= $que['id']; ?>">結果</a>
+          <a href="?do=result&id=<?= $que['id']; ?>">結果</a>
         </td>
         <td>
           <?php
