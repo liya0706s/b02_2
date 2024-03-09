@@ -89,7 +89,7 @@
   function good(news) {
     $.post("./api/good.php", {
       news
-    }, () => {a
+    }, () => {
       location.reload();
     })
   }
