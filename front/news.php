@@ -77,9 +77,9 @@
 <!-- 點擊文章標題，控制顯示部分和全部文章內容的js -->
 <script>
   // 1. 對class title進行點擊事件註冊
-  $(".title").on('click', (e) => {
+  $(".title").on('click', function() {
     // 2. 點擊對象用.data('id')方法來獲得data-id屬性的值, 取得點擊的id
-    let id = $(e.target).data('id');
+    let id = $(this).data('id');
 
     // 3. 對id為s+id, a+id的元素進行toggle()來切換顯示與隱藏
     $(`#s${id},#a${id}`).toggle();
@@ -89,7 +89,7 @@
   function good(news) {
     $.post("./api/good.php", {
       news
-    }, () => {
+    }, () => {a
       location.reload();
     })
   }
