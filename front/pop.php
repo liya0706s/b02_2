@@ -84,8 +84,7 @@
 </fieldset>
 
 <script>
-  $(".title").hover(
-    function() {
+  $(".title").hover(function() {
       $(".pop").hide()
       let id = $(this).data("id")
       $("#p" + id).show()
